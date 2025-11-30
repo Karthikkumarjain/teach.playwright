@@ -2,7 +2,7 @@ import{test} from '@playwright/test';
 
 
 
-test('Browser context example',async({browser})=>{
+test('Browser context example @Sanity',async({browser})=>{
 //Browser context
 
 
