@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  grep: [new RegExp('@Sanity')],
+  grep: [new RegExp('@Locator')],
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
