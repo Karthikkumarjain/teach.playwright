@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   timeout: 10 * 1000,
-  grep: [new RegExp('@Autowait')],
+  grep: [new RegExp('@Iframes')],
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
