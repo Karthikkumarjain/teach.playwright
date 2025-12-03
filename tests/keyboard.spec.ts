@@ -1,5 +1,7 @@
 import { test } from '@playwright/test';
 
+
+
 test('Keyboard actions @Keyboard', async ({ page }) => {
 
     await page.goto('https://www.google.in/');
@@ -19,7 +21,8 @@ test('Keyboard actions @Keyboard', async ({ page }) => {
     await page.keyboard.press('Delete');
     await page.keyboard.type('Playwright Automation with TypeScript');
     await page.keyboard.down('Shift');
-    for (let i = 0; i < 5; i++) {
+    for ( let i = 0; i < 5; i++) {
+                
         await page.keyboard.press('ArrowLeft');
 
     }

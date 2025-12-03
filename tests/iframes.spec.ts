@@ -27,7 +27,7 @@ test.only('Nested Frame Handling @Iframes',async({page})=>{
    await page.goto('https://ui.vision/demo/webtest/frames/');
   const frames=  page.frame({url:'https://ui.vision/demo/webtest/frames/frame_3.html'});
   await page.waitForTimeout(3000);
-const childframes =frames?.childFrames();
+const childframes:any =frames?.childFrames();
 await childframes[0].locator('div[aria-label="General Web Automation"]').check();
 
 

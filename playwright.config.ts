@@ -12,17 +12,19 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 10 * 1000,
-  grep: [new RegExp('@Iframes')],
+  retries:2,
+  timeout: 20 * 1000,
+  grep: [new RegExp('@WindhowHandling')],
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
+  workers :2,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+ // retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -31,8 +33,11 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
     headless:false,
+    screenshot:'on',
+    video:'on'
+
   },
 
   /* Configure projects for major browsers */
@@ -41,6 +46,7 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     }
+    
 
     // {
     //   name: 'firefox',
