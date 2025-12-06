@@ -12,21 +12,23 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  retries:2,
+ // retries: 1,
   timeout: 20 * 1000,
-  grep: [new RegExp('@WindhowHandling')],
+  grep: [new RegExp('@MockResponse')],
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: false,
-  workers :2,
+  workers: 2,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
- // retries: process.env.CI ? 2 : 0,
+  // retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: 'allure-playwright',
+  //  reporter: [["html"], ["allure-playwright"]],
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
@@ -34,19 +36,31 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
-    headless:false,
-    screenshot:'on',
-    video:'on'
+    headless: false,
+    screenshot: 'on',
+    video: 'on'
 
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'loginsetup',
+      testMatch: "tests/storage-set/auth.setup.ts",
+      use: {
+        ...devices['Desktop Chrome'],
+      //  storageState: undefined
+
+      },
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'] ,
+        storageState: "tests/storage-set/.auth/user.json"
+      },
+      dependencies: ['loginsetup'],
     }
-    
+
 
     // {
     //   name: 'firefox',
