@@ -1,4 +1,5 @@
-//tuple : fixed size, order matters
+//A tuple in TypeScript is a fixed-length array with specific types at each position.
+//tuple : fixed size, order matters -- 
 //tuple vs array
 //array:dynamic in nature
 
