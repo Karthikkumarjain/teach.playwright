@@ -39,6 +39,7 @@ let v=1;
 while(v<=10){
 
     console.log(v);
+
     v++;
 }
 
@@ -50,5 +51,5 @@ do{
 console.log(h);
 h++;
 
-}while(h<1)
+}while(h<=10)
 
